@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Target, Rocket, Heart, Code, UserCheck, BarChart3 } from 'lucide-react';
+import { ArrowRight, Target, Rocket, Heart, Code, UserCheck, BarChart3, Plus, Minus } from 'lucide-react';
 import { teamMembers } from '../../data/services';
 import CTASection from '../../components/CTASection/CTASection';
 import Footer from '../../components/Footer/Footer';
@@ -12,6 +12,27 @@ export default function About() {
     window.scrollTo(0, 0);
     initReveal();
   }, []);
+
+  const [openFaq, setOpenFaq] = useState(null);
+
+  const faqData = [
+    {
+      q: "Comment sélectionnez-vous vos prestataires ?",
+      a: "Chaque prestataire passe un processus de sélection rigoureux incluant une enquête de moralité complète, une vérification des références et un entretien de compétence approfondi."
+    },
+    {
+      q: "Mes paiements sont-ils sécurisés ?",
+      a: "Absolument. DomTrust intègre des passerelles de paiement mobiles reconnues (Wave, Orange Money) pour garantir des transactions 100% sécurisées et transparentes."
+    },
+    {
+      q: "Puis-je changer de prestataire si je ne suis pas satisfait ?",
+      a: "Votre satisfaction est notre priorité. Si un prestataire ne vous convient pas, nous nous engageons à vous proposer un profil alternatif ou un remboursement dans les plus brefs délais."
+    },
+    {
+      q: "Où le service DomTrust est-il disponible ?",
+      a: "Pour notre phase de lancement, nous couvrons l'ensemble des quartiers résidentiels et d'affaires de Dakar (Almadies, Plateau, Mermoz, Sacré-Cœur, etc.)."
+    }
+  ];
 
   return (
     <div className="page-wrapper">
@@ -113,6 +134,31 @@ export default function About() {
           })}
         </div>
       </section>
+
+      {/* ── FAQ Section ── */}
+      <section className="faq-section">
+        <div className="section-label">Foire Aux Questions</div>
+        <h2 className="section-title">Tout ce que vous devez savoir</h2>
+        <div className="faq-grid">
+          {faqData.map((item, index) => (
+            <div 
+              key={index} 
+              className={`faq-item reveal ${openFaq === index ? 'active' : ''}`}
+              onClick={() => setOpenFaq(openFaq === index ? null : index)}
+            >
+              <div className="faq-question">
+                <span>{item.q}</span>
+                {openFaq === index ? <Minus size={20} /> : <Plus size={20} />}
+              </div>
+              <div className="faq-answer">
+                <p>{item.a}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CTA ── */}
 
       {/* ── CTA ── */}
       <CTASection

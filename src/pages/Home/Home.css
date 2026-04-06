@@ -557,14 +557,14 @@
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .hero {
-    padding: 100px 0 140px;
+    padding: 120px 0 100px;
   }
 
   .hero-container {
     grid-template-columns: 1fr;
     padding: 0 24px;
     text-align: center;
-    gap: 60px;
+    gap: 48px;
   }
 
   .hero-content {
@@ -581,78 +581,107 @@
   }
 
   .hero-visual {
-    max-width: 480px;
+    max-width: 440px;
     margin: 0 auto;
   }
 
-  .card-1 {
-    right: -10px;
-  }
-
-  .card-2 {
-    left: -10px;
-  }
-
   .hero-stats-bar {
-    left: 24px;
-    right: 24px;
-    gap: 24px;
+    padding: 0 24px;
+    gap: 32px;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 64px;
   }
 
-  .why-section {
-    padding: 60px 24px;
-  }
-
-  .why-grid {
-    grid-template-columns: 1fr;
-  }
-
+  .why-section,
+  .trust-section,
+  .actors-section,
   .mini-services-section {
-    padding: 60px 24px;
+    padding: 80px 24px;
+  }
+
+  .why-grid,
+  .actors-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   .mini-services-grid {
     grid-template-columns: 1fr 1fr;
-    gap: 16px;
+    gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 2.2rem;
   }
 
-  .actors-section {
-    padding: 60px 24px;
+  .hero-stats-bar {
+    gap: 20px;
   }
 
-  .actors-grid {
+  .stat-num {
+    font-size: 1.5rem;
+  }
+
+  .mini-services-grid {
     grid-template-columns: 1fr;
   }
 
-  .trust-section {
-    padding: 60px 24px;
+  .floating-card {
+    width: 180px;
+    padding: 12px;
   }
 
-  .testimonials-grid {
-    grid-template-columns: 1fr;
+  .card-1 {
+    right: -5px;
+    top: 5%;
+  }
+
+  .card-2 {
+    left: -5px;
+    bottom: 10%;
   }
 }
 
 @media (max-width: 480px) {
+  .hero-title {
+    font-size: 1.8rem;
+  }
+
   .hero-actions {
     flex-direction: column;
-    align-items: stretch;
+    gap: 16px;
+    width: 100%;
   }
 
   .hero-actions .btn-primary,
   .hero-actions .btn-ghost {
+    width: 100%;
     justify-content: center;
   }
 
   .hero-stats-bar {
     flex-direction: column;
-    gap: 16px;
-    bottom: 40px;
+    align-items: center;
+    gap: 24px;
   }
 
-  .mini-services-grid {
-    grid-template-columns: 1fr;
+  .stat-item {
+    border-left: none;
+    border-bottom: 2px solid rgba(232, 160, 32, 0.4);
+    padding-left: 0;
+    padding-bottom: 12px;
+    text-align: center;
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .trust-badge-float {
+    left: 50%;
+    transform: translateX(-50%) !important;
+    white-space: nowrap;
   }
 }

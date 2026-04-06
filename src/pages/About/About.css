@@ -282,39 +282,146 @@
   margin-top: 16px;
 }
 
+/* FAQ Section */
+.faq-section {
+  padding: 100px 60px;
+  background: var(--navy);
+  position: relative;
+}
+
+.faq-grid {
+  max-width: 800px;
+  margin: 64px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faq-item {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 24px 32px;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+}
+
+.faq-item:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(232, 160, 32, 0.3);
+}
+
+.faq-item.active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: var(--amber);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.faq-question {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.faq-question span {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: var(--fw-bold);
+  color: var(--white);
+}
+
+.faq-question svg {
+  color: var(--amber);
+  flex-shrink: 0;
+  transition: transform 0.3s var(--ease);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s var(--ease);
+  opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 200px;
+  margin-top: 20px;
+  opacity: 1;
+}
+
+.faq-answer p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .about-hero {
     grid-template-columns: 1fr;
     padding: 120px 24px 60px;
+    text-align: center;
+  }
+
+  .about-hero-actions {
+    justify-content: center;
   }
 
   .about-hero-img {
-    height: 260px;
+    height: 300px;
   }
 
   .mission-section,
   .values-section,
-  .team-section {
-    padding: 60px 24px;
+  .team-section,
+  .faq-section {
+    padding: 80px 24px;
   }
 
   .mission-grid,
   .team-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .values-grid {
     grid-template-columns: 1fr 1fr;
   }
+
+  .faq-grid {
+    margin-top: 40px;
+  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
+  .about-hero .section-title {
+    font-size: 2.2rem;
+  }
+
   .values-grid {
     grid-template-columns: 1fr;
   }
 
+  .faq-item {
+    padding: 20px;
+  }
+
+  .faq-question span {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
   .about-hero-actions {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .about-hero-actions .btn-primary,
+  .about-hero-actions .btn-ghost {
+    width: 100%;
+    justify-content: center;
   }
 }

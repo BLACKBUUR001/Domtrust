@@ -298,6 +298,11 @@
 @media (max-width: 900px) {
   .services-hero {
     padding: 120px 24px 60px;
+    text-align: center;
+  }
+
+  .services-hero .section-sub {
+    margin: 0 auto;
   }
 
   .services-grid-section {
@@ -306,24 +311,67 @@
 
   .services-grid {
     grid-template-columns: 1fr;
+    gap: 32px;
   }
 
-  .agency-section {
-    padding: 60px 24px;
+  .agency-section,
+  .prestataire-section {
+    padding: 80px 24px;
   }
 
   .agency-inner {
     grid-template-columns: 1fr;
-    padding: 40px 24px;
-    gap: 40px;
-  }
-
-  .prestataire-section {
     padding: 60px 24px;
+    gap: 48px;
+    border-radius: 32px;
   }
 
   .prestataire-inner {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 48px;
+  }
+
+  .prestataire-visual {
+    padding: 40px 24px;
+    border-radius: 32px;
+  }
+}
+
+@media (max-width: 600px) {
+  .agency-form-card {
+    padding: 32px 20px;
+    border-radius: 24px;
+  }
+
+  .agency-inner .section-title {
+    font-size: 1.8rem;
+  }
+
+  .prestataire-visual-content h3 {
+    font-size: 1.5rem;
+  }
+
+  .prestataire-stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .prestataire-benefit {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-hero .section-title {
+    font-size: 1.8rem;
+  }
+
+  .agency-form-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 24px;
+  }
+
+  .prestataire-stat-value {
+    font-size: 1.6rem;
   }
 }
