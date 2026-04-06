@@ -31,8 +31,11 @@ export default function About() {
             <Link to="/services" className="btn-ghost">Nos services</Link>
           </div>
         </div>
-        <div className="about-hero-img">
-          <img src="/assets/logos/domtrust-logo-icon-white.png" alt="DomTrust Icon" className="about-floating-logo" />
+        <div className="about-hero-img reveal">
+          <img src="/assets/images/about-team-realistic.png" alt="Équipe DomTrust" className="about-team-img" />
+          <div className="about-img-overlay">
+            <img src="/assets/logos/domtrust-logo-icon-white.png" alt="DomTrust Icon" className="about-floating-logo-mini" />
+          </div>
         </div>
       </section>
 

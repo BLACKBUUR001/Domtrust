@@ -5,6 +5,7 @@ export const services = [
     id: 'garde-enfant',
     name: "Garde d'enfant",
     icon: Baby,
+    image: "/assets/images/service-garde-enfant.png",
     description: "Des nourrices et baby-sitters de confiance, sélectionnées avec soin pour le bien-être et la sécurité de vos enfants à domicile.",
     features: [
       "Garde à domicile (journée / soirée)",
@@ -18,6 +19,7 @@ export const services = [
     id: 'nettoyage-maison',
     name: "Nettoyage de maison",
     icon: SprayCan,
+    image: "/assets/images/service-nettoyage.png",
     description: "Entretien régulier ou ponctuel de votre domicile par des professionnels vérifiés et formés aux meilleures pratiques d'hygiène.",
     features: [
       "Nettoyage complet du domicile",
@@ -31,6 +33,7 @@ export const services = [
     id: 'aide-domestique',
     name: "Aide domestique et ménagère",
     icon: HandHelping,
+    image: "/assets/images/service-aide-domestique.png",
     description: "Un accompagnement quotidien pour l'entretien de votre foyer : repassage, lessive, courses, cuisine et organisation domestique.",
     features: [
       "Repassage et entretien du linge",

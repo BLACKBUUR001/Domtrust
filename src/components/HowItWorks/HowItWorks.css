@@ -17,118 +17,155 @@
 .how-tabs {
   display: flex;
   justify-content: center;
-  gap: 8px;
-  margin-bottom: 56px;
+  gap: 12px;
+  margin-bottom: 64px;
   flex-wrap: wrap;
+  padding: 0 20px;
 }
 
 .how-tab {
-  padding: 12px 28px;
+  padding: 14px 32px;
   border-radius: var(--radius-full);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-semibold);
+  font-size: 0.85rem;
+  font-weight: var(--fw-bold);
   font-family: var(--font-display);
   cursor: pointer;
-  transition: all 0.3s var(--ease-bounce);
-  border: 2px solid var(--gray-200);
+  transition: all 0.4s var(--ease);
+  border: 1px solid rgba(13, 27, 62, 0.1);
   background: var(--white);
   color: var(--gray-500);
-  letter-spacing: var(--ls-wide);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .how-tab:hover {
   border-color: var(--amber);
   color: var(--navy);
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
 .how-tab.active {
   background: var(--navy);
   color: var(--white);
   border-color: var(--navy);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 15px 30px rgba(13, 27, 62, 0.2);
+  transform: translateY(-2px);
 }
 
-/* Steps Container */
+.how-steps-wrapper {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Connecting Line (Desktop) */
+.how-steps-wrapper::after {
+  content: '';
+  position: absolute;
+  top: 40%;
+  left: 15%;
+  right: 15%;
+  height: 2px;
+  background-image: linear-gradient(to right, var(--amber) 33%, rgba(232, 160, 32, 0.1) 0%);
+  background-position: bottom;
+  background-size: 15px 2px;
+  background-repeat: repeat-x;
+  z-index: 0;
+}
+
+@media (max-width: 768px) {
+  .how-steps-wrapper::after {
+    display: none;
+  }
+}
+
 .how-steps {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  max-width: 1100px;
-  margin: 0 auto;
-  animation: fadeIn 0.4s var(--ease);
+  gap: 40px;
+  position: relative;
+  z-index: 1;
 }
 
 .how-step {
   background: var(--white);
-  border-radius: var(--radius-xl);
-  padding: 36px 28px;
+  border-radius: 24px;
+  padding: 48px 32px;
   text-align: center;
   position: relative;
-  border: 1px solid var(--gray-200);
-  transition: all 0.35s var(--ease);
+  border: 1px solid rgba(13, 27, 62, 0.05);
+  transition: all 0.4s var(--ease);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
 }
 
 .how-step:hover {
-  transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
-  border-color: var(--amber);
+  transform: translateY(-12px);
+  box-shadow: 0 30px 60px rgba(13, 27, 62, 0.1);
+  border-color: rgba(232, 160, 32, 0.3);
 }
 
 .how-step-number {
   position: absolute;
-  top: -16px;
+  top: -18px;
   left: 50%;
   transform: translateX(-50%);
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-circle);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
   background: var(--amber);
   color: var(--navy);
   font-family: var(--font-display);
-  font-size: var(--fs-sm);
+  font-size: 0.9rem;
   font-weight: var(--fw-bold);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(232, 160, 32, 0.3);
+  box-shadow: 0 8px 16px rgba(232, 160, 32, 0.4);
+  z-index: 2;
 }
 
 .how-step-icon {
   width: 64px;
   height: 64px;
-  border-radius: var(--radius-lg);
+  border-radius: 16px;
   background: rgba(232, 160, 32, 0.1);
   border: 1px solid rgba(232, 160, 32, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 8px auto 20px;
+  margin: 8px auto 24px;
+  transition: all 0.4s var(--ease);
+}
+
+.how-step:hover .how-step-icon {
+  background: var(--amber);
+  transform: scale(1.1) rotate(5deg);
 }
 
 .how-step-icon svg {
   width: 28px;
   height: 28px;
   color: var(--amber);
+  transition: color 0.4s;
+}
+
+.how-step:hover .how-step-icon svg {
+  color: var(--navy);
 }
 
 .how-step h4 {
   font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: var(--fw-bold);
   color: var(--navy);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .how-step p {
-  font-size: var(--fs-sm);
+  font-size: 0.9rem;
   color: var(--gray-500);
-  line-height: var(--lh-relaxed);
-}
-
-/* Connectors */
-.how-steps-wrapper {
-  position: relative;
+  line-height: 1.6;
 }
 
 /* ── Responsive ── */

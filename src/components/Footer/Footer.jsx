@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="footer-top">
         <div className="footer-brand">
           <Link to="/" className="footer-brand-logo">
-            <img src="/assets/logos/domtrust-logo-icon-white.png" alt="DomTrust" />
+            <img src="/assets/logos/domtrust-logo-icon-white.png" alt="DomTrust Icon" />
             <span>Domtrust</span>
           </Link>
           <p>Services domestiques de confiance à Dakar. Vérifiés, notés, proches de chez vous.</p>
