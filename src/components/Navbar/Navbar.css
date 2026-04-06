@@ -1,0 +1,216 @@
+/* ============================================
+   Navbar Component
+   ============================================ */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  padding: 20px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background 0.4s var(--ease), padding 0.4s var(--ease), box-shadow 0.4s;
+}
+
+.navbar.scrolled {
+  background: rgba(13, 27, 62, 0.97);
+  padding: 14px 60px;
+  box-shadow: 0 8px 32px rgba(13, 27, 62, 0.18);
+  backdrop-filter: blur(12px);
+}
+
+/* Logo */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  z-index: 110;
+}
+
+.nav-logo img {
+  height: 38px;
+  width: auto;
+  transition: transform 0.3s var(--ease-bounce);
+}
+
+.nav-logo:hover img {
+  transform: scale(1.05);
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: var(--fw-bold);
+  color: var(--white);
+  letter-spacing: 0.01em;
+}
+
+/* Nav Links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wider);
+  position: relative;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 100%;
+  height: 1.5px;
+  background: var(--amber);
+  transition: right 0.3s var(--ease);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--white);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  right: 0;
+}
+
+/* CTA Button */
+.nav-cta {
+  background: var(--amber) !important;
+  color: var(--navy) !important;
+  padding: 10px 24px !important;
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-semibold) !important;
+  transition: background 0.3s, transform 0.3s var(--ease-bounce), box-shadow 0.3s !important;
+  letter-spacing: var(--ls-wide) !important;
+}
+
+.nav-cta::after {
+  display: none !important;
+}
+
+.nav-cta:hover {
+  background: var(--amber-light) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: var(--shadow-amber) !important;
+}
+
+/* Burger Menu */
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  z-index: 110;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.nav-burger span {
+  width: 24px;
+  height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: all 0.3s var(--ease);
+  display: block;
+}
+
+.nav-burger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-burger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-burger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mobile Menu Overlay */
+.nav-mobile-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 27, 62, 0.98);
+  backdrop-filter: blur(20px);
+  z-index: 105;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  opacity: 0;
+  transition: opacity 0.4s var(--ease);
+}
+
+.nav-mobile-overlay.open {
+  display: flex;
+  opacity: 1;
+}
+
+.nav-mobile-overlay a {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: var(--fw-semibold);
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: color 0.3s, transform 0.3s var(--ease);
+  position: relative;
+}
+
+.nav-mobile-overlay a:hover,
+.nav-mobile-overlay a.active {
+  color: var(--white);
+  transform: translateX(8px);
+}
+
+.nav-mobile-overlay .nav-cta-mobile {
+  margin-top: 16px;
+  background: var(--amber);
+  color: var(--navy);
+  padding: 14px 36px;
+  border-radius: var(--radius-full);
+  font-weight: var(--fw-semibold);
+  font-size: 1rem;
+  transition: all 0.3s var(--ease-bounce);
+}
+
+.nav-mobile-overlay .nav-cta-mobile:hover {
+  background: var(--amber-light);
+  transform: scale(1.05);
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .navbar {
+    padding: 16px 24px;
+  }
+
+  .navbar.scrolled {
+    padding: 12px 24px;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-burger {
+    display: flex;
+  }
+}

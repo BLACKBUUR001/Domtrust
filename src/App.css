@@ -1,0 +1,4 @@
+@import './assets/styles/global.css';
+@import './assets/styles/responsive.css';
+
+/* App-level styles - empty for now, all styles are in component files */

@@ -1,0 +1,64 @@
+/* ============================================
+   CTASection Component
+   ============================================ */
+
+.cta-section {
+  background: linear-gradient(135deg, var(--amber) 0%, var(--amber-dark) 100%);
+  padding: 100px 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  right: -60px;
+  top: -60px;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-circle);
+}
+
+.cta-section::after {
+  content: '';
+  position: absolute;
+  left: -40px;
+  bottom: -40px;
+  width: 180px;
+  height: 180px;
+  background: rgba(13, 27, 62, 0.08);
+  border-radius: var(--radius-circle);
+}
+
+.cta-content h2 {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: var(--fw-bold);
+  color: var(--navy);
+  line-height: var(--lh-snug);
+  max-width: 480px;
+}
+
+.cta-content p {
+  color: rgba(13, 27, 62, 0.6);
+  margin-top: 12px;
+  font-size: 0.95rem;
+}
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .cta-section {
+    flex-direction: column;
+    padding: 60px 24px;
+    text-align: center;
+  }
+
+  .cta-content h2 {
+    font-size: 1.8rem;
+  }
+}

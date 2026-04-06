@@ -1,0 +1,44 @@
+/* ============================================
+   DOMTRUST — Responsive Styles
+   ============================================ */
+
+/* ── Tablet (max 1024px) ── */
+@media (max-width: 1024px) {
+  .container {
+    padding: 0 40px;
+  }
+}
+
+/* ── Mobile Large (max 768px) ── */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 5vw, 2.2rem);
+  }
+
+  .btn-primary,
+  .btn-ghost,
+  .btn-navy,
+  .btn-outline {
+    padding: 12px 24px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ── Mobile Small (max 480px) ── */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
+  }
+
+  .section-sub {
+    font-size: 0.88rem;
+  }
+}
