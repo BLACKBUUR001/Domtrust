@@ -13,6 +13,11 @@ export default function About() {
     initReveal();
   }, []);
 
+  useEffect(() => {
+    // Refresh animations when FAQ state changes to avoid elements disappearing due to React re-render
+    initReveal();
+  }, [openFaq]);
+
   const [openFaq, setOpenFaq] = useState(null);
 
   const faqData = [
@@ -143,7 +148,7 @@ export default function About() {
           {faqData.map((item, index) => (
             <div 
               key={index} 
-              className={`faq-item reveal ${openFaq === index ? 'active' : ''}`}
+              className={`faq-item reveal ${openFaq === index ? 'is-open' : ''}`}
               onClick={() => setOpenFaq(openFaq === index ? null : index)}
             >
               <div className="faq-question">
