@@ -162,7 +162,16 @@ export default function Contact() {
             </div>
           </div>
           <div className="map-visual">
-            <Map />
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61741.676646736!2d-17.5135154!3d14.7208496!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec1724458bc6645%3A0xc3f7a1f28b4d0891!2sDakar%2C%20S%C3%A9n%C3%A9gal!5e0!3m2!1sfr!2ssn!4v1712430000000!5m2!1sfr!2ssn"
+              width="100%"
+              height="100%"
+              style={{ border: 0, minHeight: '400px' }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Zone de couverture DomTrust Dakar"
+            ></iframe>
           </div>
         </div>
       </section>
