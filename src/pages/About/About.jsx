@@ -8,17 +8,17 @@ import { initReveal } from '../../utils/reveal';
 import './About.css';
 
 export default function About() {
+  const [openFaq, setOpenFaq] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
     initReveal();
   }, []);
 
   useEffect(() => {
-    // Refresh animations when FAQ state changes to avoid elements disappearing due to React re-render
+    // Refresh animations when FAQ state changes
     initReveal();
   }, [openFaq]);
-
-  const [openFaq, setOpenFaq] = useState(null);
 
   const faqData = [
     {
