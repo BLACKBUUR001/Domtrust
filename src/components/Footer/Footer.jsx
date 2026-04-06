@@ -13,7 +13,7 @@ export default function Footer() {
           </Link>
           <p>Services domestiques de confiance à Dakar. Vérifiés, notés, proches de chez vous.</p>
           <div className="footer-social">
-            <a href="https://www.linkedin.com/company/111727395/admin/dashboard/" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn"><Linkedin /></a>
+            <a href="https://www.linkedin.com/company/domtrust/about/" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="LinkedIn"><Linkedin /></a>
             <a href="https://www.facebook.com/profile.php?id=61587944276246" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Facebook"><Facebook /></a>
             <a href="https://www.instagram.com/domtrust/" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Instagram"><Instagram /></a>
             <a href="https://x.com/domtrust" target="_blank" rel="noopener noreferrer" className="footer-social-link" aria-label="Twitter"><Twitter /></a>
