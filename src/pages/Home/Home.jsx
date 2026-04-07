@@ -42,8 +42,19 @@ export default function Home() {
           </div>
 
           <div className="hero-visual">
-            <div className="hero-image-wrapper">
-              <img src="/assets/images/hero-realistic.png" alt="DomTrust Service" className="hero-main-img" />
+            <div className="hero-collage">
+              <div className="collage-item item-1 reveal">
+                <img src="/assets/images/service-nettoyage.png" alt="Nettoyage DomTrust" />
+                <div className="collage-label">Nettoyage</div>
+              </div>
+              <div className="collage-item item-2 reveal reveal-delay-1">
+                <img src="/assets/images/service-garde-enfant.png" alt="Garde d'enfant DomTrust" />
+                <div className="collage-label">Garde d'enfant</div>
+              </div>
+              <div className="collage-item item-3 reveal reveal-delay-2">
+                <img src="/assets/images/service-aide-domestique.png" alt="Aide domestique DomTrust" />
+                <div className="collage-label">Cuisine & Aide</div>
+              </div>
 
               {/* Floating Testimonials */}
               <div className="floating-card card-1 reveal">
