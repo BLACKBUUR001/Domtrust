@@ -37,16 +37,16 @@
 .error-container {
   position: relative;
   z-index: 2;
-  max-width: 900px;
-  width: 100%;
+  max-width: 1000px;
+  width: 90%;
   display: flex;
   align-items: center;
-  gap: 60px;
+  gap: 80px;
   background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(24px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 40px;
-  padding: 60px;
+  padding: 80px;
   box-shadow: 0 40px 100px rgba(0,0,0,0.5);
   animation: slideUpFade 0.8s var(--ease) both;
 }
@@ -55,20 +55,22 @@
   flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .error-code-wrapper {
   position: relative;
+  display: inline-block;
 }
 
 .error-code {
   font-family: var(--font-display);
-  font-size: 12rem;
+  font-size: 11rem;
   font-weight: var(--fw-bold);
   color: transparent;
   -webkit-text-stroke: 2px rgba(232, 160, 32, 0.3);
   line-height: 1;
-  letter-spacing: -4px;
+  letter-spacing: -2px;
   opacity: 0.8;
   animation: floatError 6s ease-in-out infinite;
 }
@@ -84,7 +86,10 @@
 }
 
 .error-content {
-  flex: 1.2;
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .error-title {
