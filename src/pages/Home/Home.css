@@ -264,22 +264,7 @@
   gap: 2px;
 }
 
-.trust-badge-float {
-  position: absolute;
-  top: -20px;
-  left: 20%;
-  background: var(--amber);
-  color: var(--navy);
-  padding: 10px 20px;
-  border-radius: 100px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-xs);
-  box-shadow: 0 10px 25px rgba(232, 160, 32, 0.4);
-  animation: bounce 3s ease-in-out infinite;
-}
+
 
 /* Updated Stats Bar - Flow positioning */
 .hero-stats-bar {
@@ -748,9 +733,5 @@
     max-width: 200px;
   }
 
-  .trust-badge-float {
-    left: 50%;
-    transform: translateX(-50%) !important;
-    white-space: nowrap;
-  }
+
 }

@@ -83,10 +83,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="trust-badge-float">
-                <Shield size={18} />
-                <span>100% Vérifié</span>
-              </div>
+
             </div>
           </div>
         </div>
