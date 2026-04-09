@@ -32,7 +32,7 @@ export default function Navbar() {
           <li><NavLink to="/services">Services</NavLink></li>
           <li><NavLink to="/a-propos">À propos</NavLink></li>
           <li><NavLink to="/contact">Contact</NavLink></li>
-          <li><NavLink to="/contact" className="nav-cta">Rejoindre la liste →</NavLink></li>
+          <li><NavLink to="/contact" className="nav-cta">Rejoindre la liste d'attente →</NavLink></li>
         </ul>
 
         <button

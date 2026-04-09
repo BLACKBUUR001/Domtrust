@@ -34,7 +34,7 @@ export default function Home() {
             </p>
             <div className="hero-actions">
               <Link to="/contact" className="btn-primary">
-                Rejoindre la waitlist
+                Rejoindre la liste d'attente
                 <ArrowRight size={16} />
               </Link>
               <Link to="/services" className="btn-ghost">Voir les services</Link>
