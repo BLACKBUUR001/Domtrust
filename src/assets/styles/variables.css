@@ -95,16 +95,22 @@
   --shadow-md: 0 8px 24px rgba(13, 27, 62, 0.08);
   --shadow-lg: 0 12px 40px rgba(13, 27, 62, 0.12);
   --shadow-xl: 0 20px 60px rgba(13, 27, 62, 0.16);
-  --shadow-amber: 0 12px 32px rgba(232, 160, 32, 0.35);
-  --shadow-navy: 0 12px 32px rgba(13, 27, 62, 0.35);
+  --shadow-amber: 0 12px 32px rgba(232, 160, 32, 0.25);
+  --shadow-navy: 0 12px 32px rgba(13, 27, 62, 0.2);
+  --shadow-glass: 0 8px 32px 0 rgba(13, 27, 62, 0.1);
 
   /* ── Transitions ── */
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --duration-fast: 150ms;
   --duration-base: 300ms;
   --duration-slow: 500ms;
+  --duration-slower: 800ms;
+
+  /* ── Animations ── */
+  --stagger-delay: 0.1s;
 
   /* ── Z-Index ── */
   --z-base: 1;

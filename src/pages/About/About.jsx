@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ArrowRight, Target, Rocket, Heart, Code, UserCheck, BarChart3, Plus, Minus } from 'lucide-react';
 import { teamMembers } from '../../data/services';
 import CTASection from '../../components/CTASection/CTASection';
 import Footer from '../../components/Footer/Footer';
-import { initReveal } from '../../utils/reveal';
+import SEO from '../../components/SEO/SEO';
+import PageTransition from '../../components/Animated/PageTransition';
 import './About.css';
 
 export default function About() {
@@ -12,13 +14,8 @@ export default function About() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    initReveal();
   }, []);
 
-  useEffect(() => {
-    // Refresh animations when FAQ state changes
-    initReveal();
-  }, [openFaq]);
 
   const faqData = [
     {
@@ -40,7 +37,12 @@ export default function About() {
   ];
 
   return (
-    <div className="page-wrapper">
+    <PageTransition>
+      <SEO 
+        title="À Propos de DomTrust — Notre Mission" 
+        description="Découvrez l'histoire de DomTrust, notre mission pour sécuriser les services à domicile à Dakar et l'équipe derrière le projet."
+      />
+      <div className="page-wrapper">
       {/* ── Hero ── */}
       <section className="about-hero">
         <div>
@@ -57,12 +59,18 @@ export default function About() {
             <Link to="/services" className="btn-ghost">Nos services</Link>
           </div>
         </div>
-        <div className="about-hero-img reveal">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="about-hero-img"
+        >
           <img src="/assets/images/about-team-realistic.png" alt="Équipe DomTrust" className="about-team-img" />
           <div className="about-img-overlay">
             <img src="/assets/logos/domtrust-logo-icon-white.png" alt="DomTrust Icon" className="about-floating-logo-mini" />
           </div>
-        </div>
+        </motion.div>
       </section>
 
       {/* ── Mission Cards ── */}
@@ -70,21 +78,21 @@ export default function About() {
         <div className="section-label">Notre raison d'être</div>
         <h2 className="section-title">Vision, Mission, Valeurs</h2>
         <div className="mission-grid">
-          <div className="mission-card navy-bg reveal">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="mission-card navy-bg">
             <div className="mission-card-icon"><Target /></div>
             <h3>Notre Vision</h3>
             <p>Devenir la référence incontournable des services domestiques en Afrique de l'Ouest — une plateforme où chaque foyer peut trouver le bon professionnel, en toute sécurité.</p>
-          </div>
-          <div className="mission-card amber-bg reveal reveal-delay-1">
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="mission-card amber-bg">
             <div className="mission-card-icon"><Rocket /></div>
             <h3>Notre Mission</h3>
             <p>Connecter les ménages dakarois avec des prestataires vérifiés et des agences certifiées, accessibles et bien notés, en simplifiant radicalement le processus.</p>
-          </div>
-          <div className="mission-card light-bg reveal reveal-delay-2">
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="mission-card light-bg">
             <div className="mission-card-icon"><Heart /></div>
             <h3>Nos Valeurs</h3>
             <p>Confiance, transparence, proximité et inclusion. Nous croyons que chaque foyer mérite un accès équitable à des services de qualité.</p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -174,5 +182,6 @@ export default function About() {
 
       <Footer />
     </div>
+    </PageTransition>
   );
 }

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ArrowRight, Shield, Star, Smartphone, MapPin, Users, Building2 } from 'lucide-react';
 import { services, testimonials, stats } from '../../data/services';
 import { ServiceCardMini } from '../../components/ServiceCard/ServiceCard';
@@ -7,16 +8,33 @@ import TestimonialCard from '../../components/TestimonialCard/TestimonialCard';
 import HowItWorks from '../../components/HowItWorks/HowItWorks';
 import CTASection from '../../components/CTASection/CTASection';
 import Footer from '../../components/Footer/Footer';
-import { initReveal } from '../../utils/reveal';
+import SEO from '../../components/SEO/SEO';
+import PageTransition from '../../components/Animated/PageTransition';
 import './Home.css';
 
-export default function Home() {
-  useEffect(() => {
-    initReveal();
-  }, []);
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+};
+
+export default function Home() {
   return (
-    <div className="page-wrapper">
+    <PageTransition>
+      <SEO 
+        title="Services à domicile en toute confiance à Dakar" 
+        description="Faites appel à des prestataires vérifiés pour le nettoyage, la garde d'enfant et plus encore à Dakar."
+      />
+      <div className="page-wrapper">
       {/* ── Hero ── */}
       <section className="hero">
         <div className="hero-bg"></div>
@@ -24,7 +42,12 @@ export default function Home() {
         <div className="hero-shape"></div>
 
         <div className="hero-container">
-          <div className="hero-content">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="hero-content"
+          >
             <h1 className="hero-title">
               Des services à domicile<br />en toute <span>confiance</span>
             </h1>
@@ -39,25 +62,30 @@ export default function Home() {
               </Link>
               <Link to="/services" className="btn-ghost">Voir les services</Link>
             </div>
-          </div>
+          </motion.div>
 
           <div className="hero-visual">
             <div className="hero-collage">
-              <div className="collage-item item-1 reveal">
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }} className="collage-item item-1">
                 <img src="/assets/images/service-nettoyage.png" alt="Nettoyage DomTrust" />
                 <div className="collage-label">Nettoyage</div>
-              </div>
-              <div className="collage-item item-2 reveal reveal-delay-1">
+              </motion.div>
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.6 }} className="collage-item item-2">
                 <img src="/assets/images/service-garde-enfant.png" alt="Garde d'enfant DomTrust" />
                 <div className="collage-label">Garde d'enfant</div>
-              </div>
-              <div className="collage-item item-3 reveal reveal-delay-2">
+              </motion.div>
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.8 }} className="collage-item item-3">
                 <img src="/assets/images/service-aide-domestique.png" alt="Aide domestique DomTrust" />
                 <div className="collage-label">Cuisine & Aide</div>
-              </div>
+              </motion.div>
 
               {/* Floating Testimonials */}
-              <div className="floating-card card-1 reveal">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ delay: 1, duration: 0.5 }}
+                className="floating-card card-1"
+              >
                 <div className="floating-card-avatar">
                   <img src="/assets/images/user-fatou.png" alt="Fatou" />
                 </div>
@@ -68,9 +96,14 @@ export default function Home() {
                     {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="var(--amber)" color="var(--amber)" />)}
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="floating-card card-2 reveal reveal-delay-1">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ delay: 1.2, duration: 0.5 }}
+                className="floating-card card-2"
+              >
                 <div className="floating-card-avatar">
                   <img src="/assets/images/user-moussa.png" alt="Moussa" />
                 </div>
@@ -81,9 +114,7 @@ export default function Home() {
                     {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="var(--amber)" color="var(--amber)" />)}
                   </div>
                 </div>
-              </div>
-
-
+              </motion.div>
             </div>
           </div>
         </div>
@@ -131,27 +162,27 @@ export default function Home() {
               DomTrust a été conçu pour y répondre.
             </p>
             <div className="pillars">
-              <div className="pillar reveal">
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="pillar">
                 <div className="pillar-icon"><Shield /></div>
                 <div>
                   <h4>Prestataires & agences 100% vérifiés</h4>
                   <p>Photos, adresse, identité et antécédents contrôlés avant toute mise en ligne.</p>
                 </div>
-              </div>
-              <div className="pillar reveal reveal-delay-1">
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="pillar">
                 <div className="pillar-icon"><Star /></div>
                 <div>
                   <h4>Avis certifiés & transparents</h4>
                   <p>42,1% des utilisateurs exigent des avis vérifiés. Chez nous, chaque note est authentique.</p>
                 </div>
-              </div>
-              <div className="pillar reveal reveal-delay-2">
+              </motion.div>
+              <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="pillar">
                 <div className="pillar-icon"><Smartphone /></div>
                 <div>
                   <h4>Paiement mobile sécurisé</h4>
                   <p>Options de paiement locales intégrées pour une flexibilité totale et une sécurité garantie.</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -233,5 +264,7 @@ export default function Home() {
       {/* ── Footer ── */}
       <Footer />
     </div>
+    </PageTransition>
   );
 }
+

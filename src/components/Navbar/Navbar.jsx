@@ -13,8 +13,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    // Scroll lock removed for popup menu overlay
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);

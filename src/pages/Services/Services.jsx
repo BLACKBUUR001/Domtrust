@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { ArrowRight, Check, Eye, BarChart3, Award, Wallet, Clock, TrendingUp, Loader2 } from 'lucide-react';
 import { services } from '../../data/services';
 import { ServiceCard } from '../../components/ServiceCard/ServiceCard';
 import CTASection from '../../components/CTASection/CTASection';
 import Footer from '../../components/Footer/Footer';
+import SEO from '../../components/SEO/SEO';
+import PageTransition from '../../components/Animated/PageTransition';
 import { initReveal, showToast } from '../../utils/reveal';
 import { submitAgencyForm } from '../../utils/api';
 import './Services.css';
@@ -17,7 +20,6 @@ export default function Services() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    initReveal();
   }, []);
 
   const handleAgencyChange = (e) => {
@@ -39,7 +41,12 @@ export default function Services() {
   };
 
   return (
-    <div className="page-wrapper">
+    <PageTransition>
+      <SEO 
+        title="Nos Services Domestiques à Dakar" 
+        description="Parcourez nos services : nettoyage, garde d'enfant, cuisine. Devenez prestataire ou agence partenaire DomTrust dès aujourd'hui."
+      />
+      <div className="page-wrapper">
       {/* ── Hero ── */}
       <section className="services-hero">
         <div className="services-hero-content">
@@ -75,31 +82,36 @@ export default function Services() {
               Rejoignez le réseau de prestataires vérifiés de DomTrust et développez votre activité avec des clients de confiance.
             </p>
             <div className="prestataire-benefits">
-              <div className="prestataire-benefit reveal">
+              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="prestataire-benefit">
                 <div className="prestataire-benefit-icon"><Wallet /></div>
                 <div>
                   <h4>Revenus réguliers</h4>
                   <p>Recevez des missions correspondant à vos compétences et votre zone géographique.</p>
                 </div>
-              </div>
-              <div className="prestataire-benefit reveal reveal-delay-1">
+              </motion.div>
+              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="prestataire-benefit">
                 <div className="prestataire-benefit-icon"><Clock /></div>
                 <div>
                   <h4>Flexibilité totale</h4>
                   <p>Choisissez vos horaires et acceptez uniquement les missions qui vous conviennent.</p>
                 </div>
-              </div>
-              <div className="prestataire-benefit reveal reveal-delay-2">
+              </motion.div>
+              <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="prestataire-benefit">
                 <div className="prestataire-benefit-icon"><TrendingUp /></div>
                 <div>
                   <h4>Évolution de carrière</h4>
                   <p>Collectez des avis positifs, montez en grade et accédez à des missions premium.</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
 
-          <div className="prestataire-visual">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="prestataire-visual"
+          >
             <div className="prestataire-visual-content">
               <h3>Rejoignez +200 prestataires</h3>
               <p>Inscrivez-vous gratuitement et commencez à recevoir des missions dès la validation de votre profil.</p>
@@ -117,7 +129,7 @@ export default function Services() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -192,5 +204,6 @@ export default function Services() {
 
       <Footer />
     </div>
+    </PageTransition>
   );
 }

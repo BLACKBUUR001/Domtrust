@@ -1,10 +1,17 @@
+import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import './ServiceCard.css';
 
 export function ServiceCard({ service, className = '', delay = 0 }) {
   const Icon = service.icon;
   return (
-    <div className={`service-card reveal ${className}`} style={{ transitionDelay: `${delay * 0.1}s` }}>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay: delay * 0.1 }}
+      className={`service-card ${className}`}
+    >
       <div className="service-card-top">
         {service.image && (
           <img src={service.image} alt={service.name} className="service-card-img" />
@@ -22,28 +29,32 @@ export function ServiceCard({ service, className = '', delay = 0 }) {
         <div className="service-card-features">
           {service.features.map((feat, i) => (
             <div key={i} className="service-card-feat">
-              <Check />
+              <Check size={16} />
               {feat}
             </div>
           ))}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export function ServiceCardMini({ service, onClick, className = '', delay = 0 }) {
   const Icon = service.icon;
   return (
-    <div
-      className={`service-card-mini reveal ${className}`}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      whileHover={{ scale: 1.03, y: -5 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: delay * 0.05 }}
+      className={`service-card-mini ${className}`}
       onClick={onClick}
-      style={{ transitionDelay: `${delay * 0.1}s` }}
     >
       <div className="service-card-mini-icon">
         <Icon />
       </div>
       <div className="service-card-mini-name">{service.name}</div>
-    </div>
+    </motion.div>
   );
 }

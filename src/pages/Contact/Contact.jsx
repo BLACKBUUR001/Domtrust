@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { MapPin, Phone, Mail, Clock, Linkedin, Facebook, Instagram, Twitter, Map, ArrowRight, Loader2 } from 'lucide-react';
 import { coverageZones } from '../../data/services';
 import Footer from '../../components/Footer/Footer';
+import SEO from '../../components/SEO/SEO';
+import PageTransition from '../../components/Animated/PageTransition';
 import { initReveal, showToast } from '../../utils/reveal';
 import { submitContactForm } from '../../utils/api';
 import './Contact.css';
@@ -12,7 +15,6 @@ export default function Contact() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    initReveal();
   }, []);
 
   const handleSubmit = async (e) => {
@@ -39,7 +41,12 @@ export default function Contact() {
   };
 
   return (
-    <div className="page-wrapper">
+    <PageTransition>
+      <SEO 
+        title="Contactez DomTrust — Aide & Support" 
+        description="Besoin d'aide ou envie de rejoindre DomTrust ? Contactez-nous pour toute question sur nos services à domicile à Dakar."
+      />
+      <div className="page-wrapper">
       {/* ── Hero ── */}
       <section className="contact-hero">
         <div className="contact-hero-content">
@@ -106,7 +113,13 @@ export default function Contact() {
             </div>
           </div>
 
-          <form className="contact-form-card" onSubmit={handleSubmit}>
+          <motion.form 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="contact-form-card" 
+            onSubmit={handleSubmit}
+          >
             <h3>Envoyez-nous un message</h3>
             <div className="contact-form-row">
               <div className="form-group">
@@ -145,7 +158,7 @@ export default function Contact() {
               {loading ? (<>Envoi en cours... <Loader2 size={16} className="spin" /></>) : (<>Envoyer le message <ArrowRight size={16} /></>)}
             </button>
             <p className="contact-form-note">Réponse sous 24h · Vos données sont protégées</p>
-          </form>
+          </motion.form>
         </div>
       </section>
 
@@ -178,5 +191,6 @@ export default function Contact() {
 
       <Footer />
     </div>
+    </PageTransition>
   );
 }
