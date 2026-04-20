@@ -11,7 +11,14 @@ node_modules
 dist
 dist-ssr
 *.local
+
+# Env (ne jamais commiter)
 .env
+.env.local
+.env.*.local
+.env.production
+!.env.example
+.vercel
 
 # Editor directories and files
 .vscode/*

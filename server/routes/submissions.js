@@ -1,35 +1,34 @@
 import { Router } from 'express';
+import rateLimit from 'express-rate-limit';
 import pool from '../db.js';
 import { sendContactEmail, sendAgencyEmail } from '../utils/mailer.js';
+import { validateContact, validateAgency } from '../utils/validate.js';
 
 const router = Router();
 
-// POST /api/submissions/contact
-router.post('/contact', async (req, res) => {
-  const { fname, lname, email, phone, subject, message } = req.body;
+const submitLimiter = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 10,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Trop de requêtes. Réessayez dans quelques minutes.' }
+});
 
-  // Validation
-  if (!fname || !email) {
-    return res.status(400).json({ error: 'Prénom et email sont obligatoires.' });
-  }
+router.post('/contact', submitLimiter, async (req, res) => {
+  const { error, data } = validateContact(req.body || {});
+  if (error) return res.status(400).json({ error });
 
   try {
     const result = await pool.query(
       `INSERT INTO contact_submissions (fname, lname, email, phone, subject, message)
        VALUES ($1, $2, $3, $4, $5, $6)
        RETURNING id, created_at`,
-      [fname, lname || null, email, phone || null, subject || null, message || null]
+      [data.fname, data.lname, data.email, data.phone, data.subject, data.message]
     );
 
-    console.log(`📩 Nouveau contact: ${fname} ${lname || ''} (${email})`);
-
-    // Envoi email
-    try {
-      await sendContactEmail(req.body);
-      console.log('📧 Email de contact envoyé avec succès');
-    } catch (mailErr) {
-      console.error('❌ Erreur envoi email (contact):', mailErr.message);
-    }
+    sendContactEmail(data).catch(err =>
+      console.error('Erreur envoi email (contact):', err.message)
+    );
 
     res.status(201).json({
       success: true,
@@ -37,37 +36,26 @@ router.post('/contact', async (req, res) => {
       id: result.rows[0].id
     });
   } catch (err) {
-    console.error('❌ Erreur insertion contact:', err.message);
+    console.error('Erreur insertion contact:', err.message);
     res.status(500).json({ error: 'Erreur serveur. Veuillez réessayer.' });
   }
 });
 
-// POST /api/submissions/agency
-router.post('/agency', async (req, res) => {
-  const { agency_name, manager, phone, nb_providers, coverage_zone } = req.body;
-
-  // Validation
-  if (!agency_name || !manager || !phone) {
-    return res.status(400).json({ error: 'Nom d\'agence, responsable et téléphone sont obligatoires.' });
-  }
+router.post('/agency', submitLimiter, async (req, res) => {
+  const { error, data } = validateAgency(req.body || {});
+  if (error) return res.status(400).json({ error });
 
   try {
     const result = await pool.query(
       `INSERT INTO agency_submissions (agency_name, manager, phone, nb_providers, coverage_zone)
        VALUES ($1, $2, $3, $4, $5)
        RETURNING id, created_at`,
-      [agency_name, manager, phone, nb_providers || null, coverage_zone || null]
+      [data.agency_name, data.manager, data.phone, data.nb_providers, data.coverage_zone]
     );
 
-    console.log(`🏢 Nouvelle agence: ${agency_name} — ${manager} (${phone})`);
-
-    // Envoi email
-    try {
-      await sendAgencyEmail(req.body);
-      console.log('📧 Email agence envoyé avec succès');
-    } catch (mailErr) {
-      console.error('❌ Erreur envoi email (agence):', mailErr.message);
-    }
+    sendAgencyEmail(data).catch(err =>
+      console.error('Erreur envoi email (agence):', err.message)
+    );
 
     res.status(201).json({
       success: true,
@@ -75,7 +63,7 @@ router.post('/agency', async (req, res) => {
       id: result.rows[0].id
     });
   } catch (err) {
-    console.error('❌ Erreur insertion agence:', err.message);
+    console.error('Erreur insertion agence:', err.message);
     res.status(500).json({ error: 'Erreur serveur. Veuillez réessayer.' });
   }
 });
