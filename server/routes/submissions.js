@@ -20,10 +20,10 @@ router.post('/contact', submitLimiter, async (req, res) => {
 
   try {
     const result = await pool.query(
-      `INSERT INTO contact_submissions (fname, lname, email, phone, subject, message)
-       VALUES ($1, $2, $3, $4, $5, $6)
+      `INSERT INTO contact_submissions (fname, lname, email, phone, subject, message, category)
+       VALUES ($1, $2, $3, $4, $5, $6, $7)
        RETURNING id, created_at`,
-      [data.fname, data.lname, data.email, data.phone, data.subject, data.message]
+      [data.fname, data.lname, data.email, data.phone, data.subject, data.message, data.category]
     );
 
     sendContactEmail(data).catch(err =>

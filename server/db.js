@@ -23,8 +23,14 @@ export async function initDB() {
         phone VARCHAR(50),
         subject VARCHAR(200),
         message TEXT,
+        category VARCHAR(20) NOT NULL DEFAULT 'general'
+          CHECK (category IN ('waitlist','provider','agency_interest','general','problem')),
         created_at TIMESTAMP DEFAULT NOW()
       );
+    `);
+    await client.query(`
+      CREATE INDEX IF NOT EXISTS contact_submissions_category_idx
+      ON contact_submissions(category, created_at DESC);
     `);
 
     await client.query(`

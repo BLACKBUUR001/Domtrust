@@ -1,6 +1,18 @@
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const PHONE_RE = /^[+0-9\s().-]{6,30}$/;
 
+const CATEGORIES = ['waitlist', 'provider', 'agency_interest', 'general', 'problem'];
+
+export function categorizeSubject(subject) {
+  if (!subject) return 'general';
+  const s = String(subject).toLowerCase();
+  if (s.includes('waitlist') || s.includes("liste d'attente") || s.includes('liste d attente')) return 'waitlist';
+  if (s.includes('prestataire')) return 'provider';
+  if (s.includes('agence') || s.includes('partenariat')) return 'agency_interest';
+  if (s.includes('problème') || s.includes('probleme') || s.includes('signaler') || s.includes('bug')) return 'problem';
+  return 'general';
+}
+
 export function clean(v, max = 500) {
   if (v === undefined || v === null) return null;
   const s = String(v).trim();
@@ -31,7 +43,12 @@ export function validateContact(body) {
   if (!EMAIL_RE.test(email)) return { error: 'Format d\'email invalide.' };
   if (phone && !PHONE_RE.test(phone)) return { error: 'Format de téléphone invalide.' };
 
-  return { data: { fname, lname, email, phone, subject, message } };
+  let category = clean(body.category, 20);
+  if (!category || !CATEGORIES.includes(category)) {
+    category = categorizeSubject(subject);
+  }
+
+  return { data: { fname, lname, email, phone, subject, message, category } };
 }
 
 export function validateAgency(body) {

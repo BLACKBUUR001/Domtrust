@@ -16,19 +16,29 @@ const transporter = nodemailer.createTransport({
 /**
  * Envoie une notification email pour une soumission de formulaire Contact
  */
+const CATEGORY_LABELS = {
+  waitlist: '📋 Liste d\'attente',
+  provider: '👤 Prestataire',
+  agency_interest: '🏢 Partenariat agence',
+  general: '💬 Question générale',
+  problem: '⚠️ Signalement'
+};
+
 export async function sendContactEmail(data) {
-  const { fname, lname, email, phone, subject, message } = data;
+  const { fname, lname, email, phone, subject, message, category } = data;
+  const catLabel = CATEGORY_LABELS[category] || CATEGORY_LABELS.general;
 
   const mailOptions = {
     from: `"DomTrust Website" <${process.env.EMAIL_USER}>`,
     to: process.env.EMAIL_TO,
-    subject: `📩 Nouveau message Contact — ${fname} ${lname || ''}`,
+    subject: `${catLabel} — ${fname} ${lname || ''}`,
     replyTo: email,
     html: `
       <div style="font-family: 'Segoe UI', Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f8f9fa; border-radius: 12px; overflow: hidden;">
         <div style="background: linear-gradient(135deg, #0a1628 0%, #162544 100%); padding: 32px 24px; text-align: center;">
           <h1 style="color: #e8a020; margin: 0; font-size: 24px;">DomTrust</h1>
           <p style="color: rgba(255,255,255,0.6); margin: 8px 0 0; font-size: 14px;">Nouveau message depuis le formulaire de contact</p>
+          <div style="display: inline-block; margin-top: 12px; padding: 6px 14px; background: rgba(232,160,32,0.15); border: 1px solid #e8a020; border-radius: 20px; color: #e8a020; font-size: 13px; font-weight: 600;">${e(catLabel)}</div>
         </div>
         <div style="padding: 32px 24px;">
           <table style="width: 100%; border-collapse: collapse;">

@@ -114,7 +114,7 @@ export function createSubmissionHandler({ kind, table, columns, sendEmail, valid
 export const contactHandler = createSubmissionHandler({
   kind: 'contact',
   table: 'contact_submissions',
-  columns: ['fname', 'lname', 'email', 'phone', 'subject', 'message'],
+  columns: ['fname', 'lname', 'email', 'phone', 'subject', 'message', 'category'],
   validate: validateContact,
   sendEmail: sendContactEmail
 });
