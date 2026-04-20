@@ -1,16 +1,24 @@
-// Scroll reveal utility
+// Scroll reveal utility — retourne une fonction cleanup
 export function initReveal() {
-  setTimeout(() => {
+  let observer = null;
+  const timeoutId = setTimeout(() => {
     const els = document.querySelectorAll('.reveal:not(.visible)');
-    const observer = new IntersectionObserver((entries) => {
+    if (!els.length) return;
+    observer = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('visible');
+          observer.unobserve(e.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
     els.forEach(el => observer.observe(el));
-  }, 100);
+  }, 50);
+
+  return () => {
+    clearTimeout(timeoutId);
+    if (observer) observer.disconnect();
+  };
 }
 
 // Toast notification

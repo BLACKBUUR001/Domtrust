@@ -10,6 +10,7 @@ import CTASection from '../../components/CTASection/CTASection';
 import Footer from '../../components/Footer/Footer';
 import SEO from '../../components/SEO/SEO';
 import PageTransition from '../../components/Animated/PageTransition';
+import { initReveal } from '../../utils/reveal';
 import './Home.css';
 
 const containerVariants = {
@@ -28,6 +29,8 @@ const itemVariants = {
 };
 
 export default function Home() {
+  useEffect(() => initReveal(), []);
+
   return (
     <PageTransition>
       <SEO 

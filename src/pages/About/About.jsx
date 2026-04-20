@@ -7,6 +7,7 @@ import CTASection from '../../components/CTASection/CTASection';
 import Footer from '../../components/Footer/Footer';
 import SEO from '../../components/SEO/SEO';
 import PageTransition from '../../components/Animated/PageTransition';
+import { initReveal } from '../../utils/reveal';
 import './About.css';
 
 export default function About() {
@@ -14,6 +15,7 @@ export default function About() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    return initReveal();
   }, []);
 
 
