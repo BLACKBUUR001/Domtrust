@@ -158,7 +158,7 @@ export default function About() {
           {faqData.map((item, index) => (
             <div 
               key={index} 
-              className={`faq-item reveal ${openFaq === index ? 'is-open' : ''}`}
+              className={`faq-item ${openFaq === index ? 'is-open' : ''}`}
               onClick={() => setOpenFaq(openFaq === index ? null : index)}
             >
               <div className="faq-question">
